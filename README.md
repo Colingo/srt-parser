@@ -55,7 +55,7 @@ The file in the above example contained
 
 ## Installation
 
-`npm install srt-parser`
+`npm install srt`
 
 ## Tests
 
