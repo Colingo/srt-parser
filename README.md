@@ -67,6 +67,6 @@ The file in the above example contained
 
 ## MIT Licenced
 
-  [1]: https://secure.travis-ci.org/Raynos/srt-parser.png
-  [2]: http://travis-ci.org/Raynos/srt-parser
+  [1]: https://secure.travis-ci.org/Colingo/srt-parser.png
+  [2]: http://travis-ci.org/Colingo/srt-parser
   [3]: http://en.wikipedia.org/wiki/SubRip
