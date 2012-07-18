@@ -1,0 +1,36 @@
+{
+  "name": "srt",
+  "version": "0.0.1",
+  "description": "Parse srt subtitle files",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Colingo/srt-parser.git",
+  "main": "index",
+  "homepage": "https://github.com/Colingo/srt-parser",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Colingo/srt-parser/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "ap": "~0.1.0"
+  },
+  "devDependencies": {
+    "testling": "git://github.com/Raynos/testling#master",
+    "testem": "git://github.com/Raynos/testem#master",
+    "tap": "0.2.5"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Colingo/srt-parser/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "make node-test"
+  }
+}
