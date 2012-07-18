@@ -1,9 +1,9 @@
 {
   "name": "srt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parse srt subtitle files",
   "keywords": [],
-  "author": "Raynos <raynos2@gmail.com>",
+  "author": "Colingo <raynos2@gmail.com>",
   "repository": "git://github.com/Colingo/srt-parser.git",
   "main": "index",
   "homepage": "https://github.com/Colingo/srt-parser",
