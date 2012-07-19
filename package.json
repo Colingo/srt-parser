@@ -22,7 +22,7 @@
   "devDependencies": {
     "testling": "git://github.com/Raynos/testling#master",
     "testem": "git://github.com/Raynos/testem#master",
-    "tap": "0.2.5"
+    "tap": "git://github.com/Raynos/node-tap"
   },
   "licenses": [
     {
