@@ -8,29 +8,35 @@ Make sure your subtitle files comply with the [SubRip file format][3]
 
     var srt = require("srt")
 
-    srt(fileName, function (err, data) {
+    srt(fileName, "en", function (err, data) {
         /* data looks like
-        {
-            "1": {
+        [
+            {
                 "startTime": 20000
                 , "endTime": 24000
-                , "text": "Altocumulus clouds occur between six thousand"
+                , "languages": {
+                    "en": "Altocumulus clouds occur between six thousand"
+                }
                 , number: 1
             }
-            , "2": {
+            , {
                 "startTime": 24600
                 , "endTime": 27800
-                , "text": "and twenty thousand feet above ground level."
+                , "languages": {
+                    "en": "and twenty thousand feet above ground level."
+                }
                 , "number": 2
             }
-            , ...
-            , "subtitle number": {
+            , ... 
+            , {
                 "startTime": "subtitle start time"
                 , "endTime": "subtitle end time"
-                , "text": "text of subtitle"
+                , "languages": {
+                    "language specified": "text of subtitle"
+                }
                 , "number": "number of the subtitle"
             }
-        }
+        ]
         */
     })
 
@@ -46,11 +52,38 @@ The file in the above example contained
 
 ## String example
 
-    var src = require("srt").fromString
+    var srt = require("srt").fromString
         , srtString = fs.readFileSync(fileName)
 
     // returns same data structure as above
-    var data = srt(strString)
+    var data = srt("en", strString)
+
+## Merging multiple language srts
+
+    var srt = require("srt")
+        , fromString = srt.fromString
+        , merge = srt.merge
+        , englishSrtString = fs.readFileSync(englishFileName)
+        , spanishSrtString = fs.readFileSync(spanishFileName)
+
+    var spanishData = fromString("es", spanishSrtString)
+        , englishData = fromString("en", englishSrtString)
+
+    var data = merge(spanishData, englishData)
+    /*
+    [
+        {
+            "startTime": ...
+            , "endTime": ...
+            , "languages": {
+                "es": spanishText
+                , "en": englishText
+            }
+            , "number": ...
+        }
+        , ...
+    ]
+    */
 
 
 ## Installation
