@@ -3,26 +3,32 @@ var SECOND = 1000
     , HOUR = 60 * MINUTE
     , fs = require("fs")
     , partial = require("ap").partial
+    , iterators = require("iterators")
+    , reduce = iterators.reduceSync
+    , map = iterators.mapSync
+    , slice = Array.prototype.slice
+    , extend = require("xtend")
 
 srt.fromString = fromString
+srt.merge = merge
 
 module.exports = srt
 
-function srt(fileName, callback) {
-    fs.readFile(fileName, partial(returnParsedData, callback))
+function srt(language, fileName, callback) {
+    fs.readFile(fileName, partial(returnParsedData, language, callback))
 }
 
-function returnParsedData(callback, err, data) {
+function returnParsedData(language, callback, err, data) {
     if (err) {
         return callback(err)
     }
 
-    callback(null, fromString(data.toString()))
+    callback(null, fromString(language, data.toString()))
 }
 
-function fromString(stringData) {
+function fromString(language, stringData) {
     var segments = stringData.split("\n\n")
-    return segments.reduce(createSrtData, {})
+    return reduce(segments, createSrtData, language, [])
 }
 
 function createSrtData(memo, string) {
@@ -37,13 +43,16 @@ function createSrtData(memo, string) {
         , startTime = parseTime(times[0])
         , endTime = parseTime(times[1])
         , text = lines.slice(2).join("\n")
+        , languages = {}
 
-    memo[number] = {
+    languages[this] = text
+
+    memo.push({
         number: number
         , startTime: startTime
         , endTime: endTime
-        , text: text
-    }
+        , languages: languages
+    })
 
     return memo
 }
@@ -60,4 +69,27 @@ function parseTime(timeString) {
         MINUTE * minutes +
         SECOND * seconds +
         milliSeconds
+}
+
+function merge(srt) {
+    var srts = slice.call(arguments)
+
+    return reduce(srts, mixTogether)
+}
+
+function mixTogether(srtOne, srtTwo) {
+    return map(srtOne, insertOtherSrtLanguage, srtTwo)
+}
+
+function insertOtherSrtLanguage(caption, index) {
+    var otherSrt = this
+        , otherCaptions = this[index]
+        , languages = extend({}, caption.languages, otherCaptions.languages)
+
+    return {
+        startTime: caption.startTime
+        , endTime: caption.endTime
+        , number: caption.number
+        , languages: languages
+    }
 }

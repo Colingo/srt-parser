@@ -1,8 +1,11 @@
 {
   "name": "srt",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Parse srt subtitle files",
-  "keywords": ["srt", "subtitle"],
+  "keywords": [
+    "srt",
+    "subtitle"
+  ],
   "author": "Raynos <raynos2@gmail.com>",
   "repository": "git://github.com/Colingo/srt-parser.git",
   "main": "index",
@@ -17,7 +20,9 @@
     "email": "raynos2@gmail.com"
   },
   "dependencies": {
-    "ap": "~0.1.0"
+    "ap": "~0.1.0",
+    "iterators": "~0.1.0",
+    "xtend": "~1.0.3"
   },
   "devDependencies": {
     "testling": "git://github.com/Raynos/testling#master",

@@ -10,5 +10,10 @@
         , "./index.js"
     ]
     , "node": "node_modules/.bin/tap"
-    , "node-args": ["--tap", "./test/integration.js", "./test/unit.js"]
+    , "node-args": [
+        "--tap"
+        , "--stderr"
+        , "./test/integration.js"
+        , "./test/unit.js"
+    ]
 }

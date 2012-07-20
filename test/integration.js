@@ -4,7 +4,7 @@ var test = require("tap").test
     , correctData = require("./fixtures/testFile.json")
 
 test("test srt data from file", function (t) {
-    srt(path.join(__dirname, "fixtures", "testFile.srt"), assertResults)
+    srt("en", path.join(__dirname, "fixtures", "testFile.srt"), assertResults)
 
     function assertResults(err, data) {
         t.equal(err, null, "error is not null")
