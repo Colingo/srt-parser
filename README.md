@@ -8,7 +8,7 @@ Make sure your subtitle files comply with the [SubRip file format][3]
 
     var srt = require("srt")
 
-    srt(fileName, "en", function (err, data) {
+    srt("en", fileName, function (err, data) {
         /* data looks like
         [
             {
